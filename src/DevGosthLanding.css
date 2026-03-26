@@ -504,59 +504,74 @@ html {
   font-family: var(--font-display);
 }
 
-.mockup__metric {
-  padding: 14px 0;
+.mockup__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.mockup__metric:last-of-type {
+.mockup__step:last-of-type {
   border-bottom: none;
 }
 
-.mockup__metric-label {
-  font-size: 11px;
-  color: var(--text-dim);
-  font-weight: 500;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.mockup__metric-row {
+.mockup__step-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.mockup__metric-value {
-  font-family: var(--font-display);
-  font-size: 22px;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--text-title);
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-.mockup__metric-change {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--green-dark);
+.mockup__step--done .mockup__step-indicator {
+  background: var(--green);
+  color: #fff;
+}
+
+.mockup__step--active .mockup__step-indicator {
   background: var(--green-bg);
-  padding: 2px 8px;
-  border-radius: 99px;
+  border: 2px solid var(--green);
+  color: var(--green);
 }
 
-.mockup__metric-bar {
-  height: 4px;
+.mockup__step--pending .mockup__step-indicator {
   background: var(--border-subtle);
-  border-radius: 99px;
-  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  color: var(--text-dim);
 }
 
-.mockup__metric-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--green), var(--green-dark));
-  border-radius: 99px;
-  transition: width 0.6s ease;
+.mockup__step-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+
+.mockup__step-body {
+  flex: 1;
+}
+
+.mockup__step-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-title);
+  margin-bottom: 2px;
+}
+
+.mockup__step--pending .mockup__step-label {
+  color: var(--text-dim);
+}
+
+.mockup__step-desc {
+  font-size: 12px;
+  color: var(--text-dim);
 }
 
 .mockup__footer {

@@ -5,7 +5,7 @@ import "./DevGosthLanding.css";
 const PLANS = [
   {
     name: "Landing Page",
-    price: "$900",
+    price: "$700",
     period: "",
     desc: "Tu presencia profesional en internet",
     features: [
@@ -15,6 +15,22 @@ const PLANS = [
       "SEO básico incluido",
       "Entrega en 1-2 semanas",
       "1 mes de soporte",
+    ],
+    cta: "Solicitar cotización",
+    popular: false,
+  },
+  {
+    name: "Página Informativa",
+    price: "$1,000",
+    period: "",
+    desc: "Sitio web multi-página para tu negocio",
+    features: [
+      "Hasta 6 páginas (Inicio, Servicios, Nosotros, Contacto...)",
+      "Diseño personalizado y responsivo",
+      "Formulario de contacto",
+      "SEO básico incluido",
+      "Entrega en 2-3 semanas",
+      "2 meses de soporte",
     ],
     cta: "Solicitar cotización",
     popular: false,

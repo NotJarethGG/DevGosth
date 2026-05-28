@@ -864,6 +864,20 @@ html { scroll-behavior: smooth; }
   font-family: var(--font-display); margin-bottom: 8px;
 }
 .contact__success-text { color: var(--text-3); font-size: 13px; line-height: 1.6; }
+.contact__form-error {
+  font-size: 13px; color: #f87171; background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.2); border-radius: 8px;
+  padding: 10px 14px; line-height: 1.5;
+}
+
+.contact__input:disabled,
+.contact__textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary:disabled {
+  opacity: 0.5; cursor: not-allowed; transform: none !important;
+  box-shadow: none !important;
+}
+
 .contact__disclaimer {
   color: var(--text-4); font-size: 11.5px; margin-top: 14px; text-align: center;
 }

@@ -420,10 +420,16 @@ function HeroBrowser() {
 }
 
 /* ===== MAIN ===== */
+// ⚠️  Reemplazá este valor con tu clave de Web3Forms (web3forms.com)
+const WEB3FORMS_KEY = "TU_ACCESS_KEY_AQUI";
+
 export default function DevGosthLanding() {
   const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -440,8 +446,30 @@ export default function DevGosthLanding() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const handleSubmit = () => {
-    if (nombre.trim() && mensaje.trim()) setSubmitted(true);
+  const handleSubmit = async () => {
+    if (!nombre.trim() || !email.trim() || !mensaje.trim()) return;
+    setSending(true);
+    setFormError(false);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Nuevo mensaje de ${nombre} — DevGosth`,
+          from_name: nombre,
+          email,
+          message: mensaje,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) setSubmitted(true);
+      else setFormError(true);
+    } catch {
+      setFormError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -768,15 +796,46 @@ export default function DevGosthLanding() {
               {submitted ? (
                 <div className="contact__success">
                   <div className="contact__success-icon">✓</div>
-                  <p className="contact__success-title">¡Mensaje recibido!</p>
+                  <p className="contact__success-title">¡Mensaje enviado!</p>
                   <p className="contact__success-text">Te respondo en menos de 24 horas. ¡Gracias por contactarme!</p>
                 </div>
               ) : (
                 <div className="contact__form">
-                  <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Tu nombre" className="contact__input" />
-                  <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} placeholder="Contame tu proyecto: ¿qué necesitás y cuándo?" className="contact__textarea" rows={4} />
-                  <button className="btn-primary btn-primary--full" onClick={handleSubmit}>
-                    Enviar mensaje →
+                  <input
+                    type="text"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    placeholder="Tu nombre"
+                    className="contact__input"
+                    disabled={sending}
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Tu email (para responderte)"
+                    className="contact__input"
+                    disabled={sending}
+                  />
+                  <textarea
+                    value={mensaje}
+                    onChange={(e) => setMensaje(e.target.value)}
+                    placeholder="Contame tu proyecto: ¿qué necesitás y cuándo?"
+                    className="contact__textarea"
+                    rows={4}
+                    disabled={sending}
+                  />
+                  {formError && (
+                    <p className="contact__form-error">
+                      Hubo un error al enviar. Intentá por WhatsApp o email directamente.
+                    </p>
+                  )}
+                  <button
+                    className="btn-primary btn-primary--full"
+                    onClick={handleSubmit}
+                    disabled={sending || !nombre.trim() || !email.trim() || !mensaje.trim()}
+                  >
+                    {sending ? "Enviando..." : "Enviar mensaje →"}
                   </button>
                 </div>
               )}

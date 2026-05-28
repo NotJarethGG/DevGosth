@@ -220,6 +220,17 @@ html { scroll-behavior: smooth; }
 .nav__logo-img { width: auto; object-fit: contain; display: block; }
 
 .nav__links { display: flex; gap: 28px; align-items: center; }
+
+.lang-toggle { display: flex; align-items: center; gap: 4px; }
+.lang-toggle__sep { color: var(--text-4); font-size: 11px; }
+.lang-toggle__btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 12px; font-weight: 600; font-family: var(--font-body);
+  color: var(--text-3); padding: 3px 6px; border-radius: 5px;
+  transition: color 0.2s, background 0.2s;
+}
+.lang-toggle__btn:hover { color: var(--text-1); background: var(--border-1); }
+.lang-toggle__btn--active { color: var(--green); }
 .nav-link {
   color: var(--text-3); text-decoration: none;
   font-size: 13.5px; font-weight: 500;

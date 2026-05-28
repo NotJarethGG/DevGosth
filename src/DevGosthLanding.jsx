@@ -6,7 +6,6 @@ const PLANS = [
   {
     name: "Landing Page",
     price: "$700",
-    period: "",
     desc: "Tu presencia profesional en internet",
     features: [
       "Diseño personalizado y responsivo",
@@ -22,10 +21,9 @@ const PLANS = [
   {
     name: "Página Informativa",
     price: "$1,000",
-    period: "",
     desc: "Sitio web multi-página para tu negocio",
     features: [
-      "Hasta 6 páginas (Inicio, Servicios, Nosotros, Contacto...)",
+      "Hasta 6 páginas",
       "Diseño personalizado y responsivo",
       "Formulario de contacto",
       "SEO básico incluido",
@@ -38,7 +36,6 @@ const PLANS = [
   {
     name: "Landing + Dashboard",
     price: "$1,500",
-    period: "",
     desc: "Tu sitio con panel de administración",
     features: [
       "Todo de Landing Page",
@@ -55,7 +52,6 @@ const PLANS = [
   {
     name: "App Web Completa",
     price: "$3,000",
-    period: "",
     desc: "Solución web a medida para tu negocio",
     features: [
       "Todo de Landing + Dashboard",
@@ -80,7 +76,7 @@ const SERVICES = [
   {
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
     title: "Entrega rápida",
-    desc: "Landings en 1-2 semanas. Proyectos complejos con cronograma claro desde el inicio. Sin esperas eternas.",
+    desc: "Landings en 1-2 semanas. Proyectos complejos con cronograma claro desde el inicio.",
   },
   {
     icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
@@ -90,7 +86,7 @@ const SERVICES = [
   {
     icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
     title: "Dashboard a medida",
-    desc: "Paneles de control para gestionar tu negocio y ver métricas. Sin tocar una línea de código.",
+    desc: "Paneles de control para gestionar tu negocio. Sin tocar una línea de código.",
   },
   {
     icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
@@ -148,44 +144,109 @@ const FAQS = [
   },
 ];
 
-const MOCK_STEPS = [
-  { step: "01", label: "Brief", desc: "Definimos objetivos y alcance", status: "done" },
-  { step: "02", label: "Diseño", desc: "Prototipo y revisión visual", status: "done" },
-  { step: "03", label: "Desarrollo", desc: "Código limpio y responsivo", status: "active" },
-  { step: "04", label: "Entrega", desc: "Deploy y traspaso del proyecto", status: "pending" },
+const HERO_STATS = [
+  { value: "15+", label: "Proyectos entregados" },
+  { value: "1-2", suffix: " sem", label: "Entrega landing" },
+  { value: "100%", label: "Clientes satisfechos" },
 ];
 
-const HERO_STATS = [
-  { value: "1-2 sem", label: "Entrega landing" },
-  { value: "React", label: "Stack moderno" },
-  { value: "0 bugs", label: "Garantía de entrega" },
+const TECH_ITEMS = [
+  "React", "Next.js", "Node.js", "TypeScript", "PostgreSQL",
+  "Supabase", "Tailwind CSS", "Figma", "REST APIs", "Prisma",
 ];
 
 /* ===== HOOKS ===== */
-function useInView(threshold = 0.15) {
+function useInView(threshold = 0.12) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
       { threshold }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-
   return [ref, visible];
 }
 
+function useCursor() {
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const posRef = useRef({ x: -100, y: -100 });
+
+  useEffect(() => {
+    const onMove = (e) => {
+      posRef.current = { x: e.clientX, y: e.clientY };
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
+      }
+    };
+    let rx = -100, ry = -100, raf;
+    const tick = () => {
+      rx += (posRef.current.x - rx) * 0.1;
+      ry += (posRef.current.y - ry) * 0.1;
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${rx}px,${ry}px,0)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    const onEnter = () => document.body.classList.add("cursor--hover");
+    const onLeave = () => document.body.classList.remove("cursor--hover");
+    const selectors = "a, button, .feature-card, .plan-card, .testimonial-card, .faq-item";
+    const targets = () => document.querySelectorAll(selectors);
+    const attach = () => targets().forEach(el => {
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
+    });
+    const timeout = setTimeout(attach, 300);
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+      clearTimeout(timeout);
+      targets().forEach(el => {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseleave", onLeave);
+      });
+    };
+  }, []);
+
+  return { dotRef, ringRef };
+}
+
 /* ===== SUB-COMPONENTS ===== */
+function Cursor() {
+  const { dotRef, ringRef } = useCursor();
+  return (
+    <>
+      <div ref={ringRef} className="cursor__ring" />
+      <div ref={dotRef} className="cursor__dot" />
+    </>
+  );
+}
+
+function Marquee() {
+  const items = [...TECH_ITEMS, ...TECH_ITEMS];
+  return (
+    <div className="marquee" aria-hidden="true">
+      <div className="marquee__track">
+        {items.map((item, i) => (
+          <span key={i} className="marquee__item">
+            {item}
+            <span className="marquee__sep">·</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AnimatedSection({ children, id, className = "" }) {
   const [ref, visible] = useInView();
   return (
@@ -201,21 +262,15 @@ function AnimatedSection({ children, id, className = "" }) {
 
 function CheckIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M5 13l4 4L19 7"
-        stroke="var(--green)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+      <path d="M5 13l4 4L19 7" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 function StarIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--green)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--green)">
       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
     </svg>
   );
@@ -224,12 +279,12 @@ function StarIcon() {
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="faq-item" onClick={() => setOpen(!open)}>
+    <div className={`faq-item ${open ? "faq-item--open" : ""}`} onClick={() => setOpen(!open)}>
       <div className="faq-item__header">
         <span className="faq-item__question">{q}</span>
-        <span className={`faq-item__toggle ${open ? "faq-item__toggle--open" : ""}`}>+</span>
+        <span className="faq-item__toggle">{open ? "−" : "+"}</span>
       </div>
-      <div className={`faq-item__answer ${open ? "faq-item__answer--open" : ""}`}>
+      <div className="faq-item__answer">
         <p>{a}</p>
       </div>
     </div>
@@ -238,16 +293,12 @@ function FaqItem({ q, a }) {
 
 function Logo({ size = "default" }) {
   const iconSize = size === "small" ? 28 : 32;
-  const fontSize = size === "small" ? 18 : 20;
-  const iconFont = size === "small" ? 14 : 16;
+  const fontSize = size === "small" ? 17 : 19;
+  const iconFont = size === "small" ? 13 : 15;
   const radius = size === "small" ? 7 : 8;
-
   return (
     <a href="#" className="nav__logo">
-      <div
-        className="nav__logo-icon"
-        style={{ width: iconSize, height: iconSize, borderRadius: radius, fontSize: iconFont }}
-      >
+      <div className="nav__logo-icon" style={{ width: iconSize, height: iconSize, borderRadius: radius, fontSize: iconFont }}>
         G
       </div>
       <span className="nav__logo-text" style={{ fontSize }}>
@@ -264,9 +315,16 @@ export default function DevGosthLanding() {
   const [submitted, setSubmitted] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40);
+    const handler = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      const el = document.documentElement;
+      const max = el.scrollHeight - el.clientHeight;
+      setScrollProgress(max > 0 ? (y / max) * 100 : 0);
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -277,37 +335,35 @@ export default function DevGosthLanding() {
 
   return (
     <div className="landing">
+      <Cursor />
+      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+
       {/* ===== NAVBAR ===== */}
       <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
         <div className="nav__inner">
           <Logo />
-
           <div className="nav__links">
             <a href="#servicios" className="nav-link">Servicios</a>
             <a href="#paquetes" className="nav-link">Paquetes</a>
             <a href="#testimonios" className="nav-link">Testimonios</a>
             <a href="#faq" className="nav-link">FAQ</a>
             <a href="#contacto">
-              <button className="btn-glow btn-glow--sm">Hablemos</button>
+              <button className="btn-primary btn-primary--sm">Hablemos</button>
             </a>
           </div>
-
-          <button
-            className="nav__mobile-toggle"
-            onClick={() => setMobileMenu(!mobileMenu)}
-          >
-            {mobileMenu ? "\u2715" : "\u2630"}
+          <button className="nav__mobile-toggle" onClick={() => setMobileMenu(!mobileMenu)}>
+            <span className={`nav__hamburger ${mobileMenu ? "nav__hamburger--open" : ""}`} />
           </button>
         </div>
-
         {mobileMenu && (
           <div className="nav__mobile-menu">
-            <a href="#servicios" className="nav-link" onClick={() => setMobileMenu(false)}>Servicios</a>
-            <a href="#paquetes" className="nav-link" onClick={() => setMobileMenu(false)}>Paquetes</a>
-            <a href="#testimonios" className="nav-link" onClick={() => setMobileMenu(false)}>Testimonios</a>
-            <a href="#faq" className="nav-link" onClick={() => setMobileMenu(false)}>FAQ</a>
+            {["servicios", "paquetes", "testimonios", "faq"].map(s => (
+              <a key={s} href={`#${s}`} className="nav-link" onClick={() => setMobileMenu(false)}>
+                {s.charAt(0).toUpperCase() + s.slice(1)}
+              </a>
+            ))}
             <a href="#contacto" onClick={() => setMobileMenu(false)}>
-              <button className="btn-glow btn-glow--full">Hablemos</button>
+              <button className="btn-primary btn-primary--full">Hablemos</button>
             </a>
           </div>
         )}
@@ -315,21 +371,36 @@ export default function DevGosthLanding() {
 
       {/* ===== HERO ===== */}
       <section className="hero">
-        <div className="hero__grid-bg" />
-        <div className="hero__glow hero__glow--primary" />
-        <div className="hero__glow hero__glow--secondary" />
+        <div className="hero__bg">
+          <div className="hero__orb hero__orb--1" />
+          <div className="hero__orb hero__orb--2" />
+          <div className="hero__orb hero__orb--3" />
+          <div className="hero__grid" />
+          <div className="hero__noise" />
+        </div>
 
         <div className="hero__inner">
           <div className="hero__content">
             <div className="hero__badge">
               <span className="hero__badge-dot" />
-              <span className="hero__badge-text">Disponible para nuevos proyectos</span>
+              <span>Disponible para nuevos proyectos</span>
             </div>
 
             <h1 className="hero__title">
-              Webs que<br />
-              <span>convierten visitas</span><br />
-              en clientes
+              {[
+                { text: "Webs que", accent: false },
+                { text: "convierten", accent: true },
+                { text: "en clientes", accent: false },
+              ].map((line, i) => (
+                <span key={i} className="hero__line">
+                  <span
+                    className={`hero__line-inner ${line.accent ? "hero__line-inner--accent" : ""}`}
+                    style={{ animationDelay: `${0.08 + i * 0.13}s` }}
+                  >
+                    {line.text}
+                  </span>
+                </span>
+              ))}
             </h1>
 
             <p className="hero__desc">
@@ -339,7 +410,7 @@ export default function DevGosthLanding() {
 
             <div className="hero__actions">
               <a href="#contacto">
-                <button className="btn-glow">Ver mi trabajo</button>
+                <button className="btn-primary">Ver mi trabajo</button>
               </a>
               <a href="#paquetes">
                 <button className="btn-ghost">Ver paquetes</button>
@@ -348,55 +419,52 @@ export default function DevGosthLanding() {
 
             <div className="hero__stats">
               {HERO_STATS.map((stat) => (
-                <div key={stat.label}>
-                  <div className="hero__stat-value">{stat.value}</div>
+                <div key={stat.label} className="hero__stat">
+                  <div className="hero__stat-value">
+                    {stat.value}{stat.suffix || ""}
+                  </div>
                   <div className="hero__stat-label">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Code mockup */}
           <div className="hero__mockup">
             <div className="mockup">
-              <div className="mockup__dots">
-                <span className="mockup__dot mockup__dot--red" />
-                <span className="mockup__dot mockup__dot--yellow" />
-                <span className="mockup__dot mockup__dot--green" />
-              </div>
-
-              <div className="mockup__header">
-                <div className="mockup__header-label">Proceso de trabajo</div>
-                <div className="mockup__header-url">Tu proyecto</div>
-              </div>
-
-              {MOCK_STEPS.map((s, i) => (
-                <div key={i} className={`mockup__step mockup__step--${s.status}`}>
-                  <div className="mockup__step-indicator">
-                    {s.status === "done" ? (
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    ) : s.status === "active" ? (
-                      <span className="mockup__step-pulse" />
-                    ) : (
-                      <span>{s.step}</span>
-                    )}
-                  </div>
-                  <div className="mockup__step-body">
-                    <div className="mockup__step-label">{s.label}</div>
-                    <div className="mockup__step-desc">{s.desc}</div>
-                  </div>
+              <div className="mockup__bar">
+                <div className="mockup__dots">
+                  <span className="mockup__dot mockup__dot--red" />
+                  <span className="mockup__dot mockup__dot--yellow" />
+                  <span className="mockup__dot mockup__dot--green" />
                 </div>
-              ))}
-
-              <div className="mockup__footer">
-                <span className="mockup__footer-dot" />
-                <span className="mockup__footer-text">Proceso claro desde el día uno</span>
+                <span className="mockup__filename">proyecto.tsx</span>
+              </div>
+              <div className="mockup__body">
+                <div className="mockup__code">
+                  <p><span className="tok-ln">1</span><span className="tok-kw">export function </span><span className="tok-fn">App</span><span className="tok-p">() {"{"}</span></p>
+                  <p><span className="tok-ln">2</span><span className="tok-sp">  </span><span className="tok-kw">const </span><span className="tok-var">cliente</span><span className="tok-op"> = </span><span className="tok-fn">useCliente</span><span className="tok-p">()</span></p>
+                  <p><span className="tok-ln">3</span><span className="tok-sp">  </span><span className="tok-kw">return </span><span className="tok-p">(</span></p>
+                  <p><span className="tok-ln">4</span><span className="tok-sp">    </span><span className="tok-tag">&lt;Landing</span></p>
+                  <p><span className="tok-ln">5</span><span className="tok-sp">      </span><span className="tok-prop">diseño</span><span className="tok-op">=</span><span className="tok-str">"premium"</span></p>
+                  <p><span className="tok-ln">6</span><span className="tok-sp">      </span><span className="tok-prop">entrega</span><span className="tok-op">=</span><span className="tok-str">"rápida"</span></p>
+                  <p><span className="tok-ln">7</span><span className="tok-sp">      </span><span className="tok-prop">soporte</span><span className="tok-op">=</span><span className="tok-p">{"{"}</span><span className="tok-bool">true</span><span className="tok-p">{"}"}</span></p>
+                  <p><span className="tok-ln">8</span><span className="tok-sp">    </span><span className="tok-tag">/&gt;</span></p>
+                  <p><span className="tok-ln">9</span><span className="tok-sp">  </span><span className="tok-p">)</span></p>
+                  <p><span className="tok-ln">10</span><span className="tok-p">{"}"}</span></p>
+                </div>
+                <div className="mockup__status">
+                  <span className="mockup__status-dot" />
+                  <span className="mockup__status-text">Compilando tu proyecto...</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ===== MARQUEE ===== */}
+      <Marquee />
 
       {/* ===== SERVICES ===== */}
       <AnimatedSection id="servicios" className="section-alt">
@@ -408,21 +476,11 @@ export default function DevGosthLanding() {
               Desde una página de presentación hasta sistemas web completos. Siempre con diseño cuidado y código de calidad.
             </p>
           </div>
-
           <div className="features-grid">
             {SERVICES.map((service, i) => (
               <div key={i} className="feature-card">
                 <div className="feature-card__icon">
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--green)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d={service.icon} />
                   </svg>
                 </div>
@@ -444,16 +502,12 @@ export default function DevGosthLanding() {
               Elegís el paquete que mejor se adapta a tu proyecto. Todos incluyen diseño personalizado.
             </p>
           </div>
-
           <div className="plans-grid">
             {PLANS.map((plan, i) => (
               <div key={i} className={`plan-card ${plan.popular ? "plan-card--popular" : ""}`}>
                 {plan.popular && <div className="plan-card__badge">Más popular</div>}
                 <div className="plan-card__name">{plan.name}</div>
-                <div className="plan-card__price-row">
-                  <span className="plan-card__price">{plan.price}</span>
-                  {plan.period && <span className="plan-card__period">{plan.period}</span>}
-                </div>
+                <div className="plan-card__price">{plan.price}</div>
                 <p className="plan-card__desc">{plan.desc}</p>
                 <ul className="plan-card__features">
                   {plan.features.map((feat, j) => (
@@ -464,7 +518,7 @@ export default function DevGosthLanding() {
                   ))}
                 </ul>
                 <a href="#contacto">
-                  <button className={plan.popular ? "btn-glow btn-glow--full" : "btn-ghost btn-ghost--full"}>
+                  <button className={plan.popular ? "btn-primary btn-primary--full" : "btn-ghost btn-ghost--full"}>
                     {plan.cta}
                   </button>
                 </a>
@@ -481,7 +535,6 @@ export default function DevGosthLanding() {
             <span className="section-tag">Testimonios</span>
             <h2 className="section__title">Clientes que ya dieron el paso</h2>
           </div>
-
           <div className="testimonials-grid">
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="testimonial-card">
@@ -509,7 +562,6 @@ export default function DevGosthLanding() {
             <span className="section-tag">FAQ</span>
             <h2 className="section__title">Preguntas frecuentes</h2>
           </div>
-
           {FAQS.map((faq, i) => (
             <FaqItem key={i} q={faq.q} a={faq.a} />
           ))}
@@ -530,8 +582,7 @@ export default function DevGosthLanding() {
               <p className="contact__info-title">Contacto directo</p>
               <a href="mailto:jarethmoraga@icloud.com" className="contact__info-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="contact__info-icon">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m2 7 10 7 10-7" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 7 10-7" />
                 </svg>
                 jarethmoraga@icloud.com
               </a>
@@ -554,31 +605,15 @@ export default function DevGosthLanding() {
             <div className="contact__form-col">
               {submitted ? (
                 <div className="contact__success">
-                  <div className="contact__success-icon">&#10003;</div>
+                  <div className="contact__success-icon">✓</div>
                   <p className="contact__success-title">¡Mensaje recibido!</p>
-                  <p className="contact__success-text">
-                    Te respondo a la brevedad. Gracias por contactarme.
-                  </p>
+                  <p className="contact__success-text">Te respondo a la brevedad. Gracias por contactarme.</p>
                 </div>
               ) : (
                 <div className="contact__form">
-                  <input
-                    type="text"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                    placeholder="Tu nombre"
-                    className="contact__input"
-                  />
-                  <textarea
-                    value={mensaje}
-                    onChange={(e) => setMensaje(e.target.value)}
-                    placeholder="Contame tu proyecto..."
-                    className="contact__textarea"
-                    rows={4}
-                  />
-                  <button className="btn-glow btn-glow--full" onClick={handleSubmit}>
-                    Enviar mensaje
-                  </button>
+                  <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Tu nombre" className="contact__input" />
+                  <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} placeholder="Contame tu proyecto..." className="contact__textarea" rows={4} />
+                  <button className="btn-primary btn-primary--full" onClick={handleSubmit}>Enviar mensaje</button>
                 </div>
               )}
               <p className="contact__disclaimer">Sin compromiso. Respuesta en menos de 24 horas.</p>
@@ -596,30 +631,26 @@ export default function DevGosthLanding() {
               Desarrollo web profesional para negocios que quieren crecer en internet.
             </p>
           </div>
-
           <div>
             <h4 className="footer__col-title">Servicios</h4>
             {["Landing Page", "Landing + Dashboard", "App Web Completa", "Consultoría"].map((link) => (
               <a key={link} href="#paquetes" className="footer__link">{link}</a>
             ))}
           </div>
-
           <div>
             <h4 className="footer__col-title">Info</h4>
             {["Servicios", "Paquetes", "Testimonios", "FAQ"].map((link) => (
               <a key={link} href={`#${link.toLowerCase()}`} className="footer__link">{link}</a>
             ))}
           </div>
-
           <div>
             <h4 className="footer__col-title">Contacto</h4>
             <a href="#contacto" className="footer__link">Formulario</a>
-            <a href="#" className="footer__link">WhatsApp</a>
+            <a href="https://wa.me/50685763191" className="footer__link">WhatsApp</a>
             <a href="#" className="footer__link">LinkedIn</a>
             <a href="#" className="footer__link">GitHub</a>
           </div>
         </div>
-
         <div className="footer__bottom">
           <span className="footer__copy">&copy; 2026 DevGosth. Todos los derechos reservados.</span>
           <span className="footer__copy">Hecho con dedicación</span>

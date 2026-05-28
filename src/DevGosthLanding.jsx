@@ -420,8 +420,7 @@ function HeroBrowser() {
 }
 
 /* ===== MAIN ===== */
-// ⚠️  Reemplazá este valor con tu clave de Web3Forms (web3forms.com)
-const WEB3FORMS_KEY = "TU_ACCESS_KEY_AQUI";
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
 export default function DevGosthLanding() {
   const [nombre, setNombre] = useState("");

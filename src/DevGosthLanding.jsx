@@ -6,14 +6,15 @@ const PLANS = [
   {
     name: "Landing Page",
     price: "$700",
-    desc: "Tu presencia profesional en internet",
+    desc: "Tu vitrina digital, lista para convertir.",
     features: [
-      "Diseño personalizado y responsivo",
+      "Diseño 100% personalizado",
       "Hasta 5 secciones",
-      "Formulario de contacto",
-      "SEO básico incluido",
-      "Entrega en 1-2 semanas",
-      "1 mes de soporte",
+      "Formulario de contacto funcional",
+      "SEO básico + meta tags",
+      "Responsivo en todos los dispositivos",
+      "Entrega en 1–2 semanas",
+      "1 mes de soporte incluido",
     ],
     cta: "Solicitar cotización",
     popular: false,
@@ -21,14 +22,15 @@ const PLANS = [
   {
     name: "Página Informativa",
     price: "$1,000",
-    desc: "Sitio web multi-página para tu negocio",
+    desc: "Un sitio completo que cuenta toda tu historia.",
     features: [
-      "Hasta 6 páginas",
-      "Diseño personalizado y responsivo",
-      "Formulario de contacto",
-      "SEO básico incluido",
-      "Entrega en 2-3 semanas",
-      "2 meses de soporte",
+      "Hasta 6 páginas únicas",
+      "Diseño 100% personalizado",
+      "Formulario de contacto funcional",
+      "SEO básico + meta tags",
+      "Responsivo en todos los dispositivos",
+      "Entrega en 2–3 semanas",
+      "2 meses de soporte incluido",
     ],
     cta: "Solicitar cotización",
     popular: false,
@@ -36,15 +38,15 @@ const PLANS = [
   {
     name: "Landing + Dashboard",
     price: "$1,500",
-    desc: "Tu sitio con panel de administración",
+    desc: "Tu web pública más un panel para gestionar todo.",
     features: [
-      "Todo de Landing Page",
-      "Panel de administración",
-      "Gestión de contenido",
-      "Usuarios y roles",
-      "Base de datos incluida",
-      "Entrega en 3-5 semanas",
-      "3 meses de soporte",
+      "Todo lo de Landing Page",
+      "Panel de administración a medida",
+      "Gestión de contenido dinámico",
+      "Sistema de usuarios y roles",
+      "Base de datos en la nube",
+      "Entrega en 3–5 semanas",
+      "3 meses de soporte incluido",
     ],
     cta: "Solicitar cotización",
     popular: true,
@@ -52,15 +54,15 @@ const PLANS = [
   {
     name: "App Web Completa",
     price: "$3,000",
-    desc: "Solución web a medida para tu negocio",
+    desc: "Una plataforma digital hecha a la medida de tu negocio.",
     features: [
-      "Todo de Landing + Dashboard",
+      "Todo lo de Landing + Dashboard",
       "E-commerce o flujos complejos",
-      "Integración con pagos",
-      "APIs y automatizaciones",
-      "Diseño UX/UI a medida",
-      "Entrega en 6-10 semanas",
-      "6 meses de soporte",
+      "Integración con pasarelas de pago",
+      "APIs externas y automatizaciones",
+      "Diseño UX/UI desde cero",
+      "Entrega en 6–10 semanas",
+      "6 meses de soporte incluido",
     ],
     cta: "Hablemos del proyecto",
     popular: false,
@@ -69,90 +71,130 @@ const PLANS = [
 
 const SERVICES = [
   {
+    num: "01",
     icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
-    title: "Diseño moderno",
-    desc: "Interfaces limpias, atractivas y adaptadas a tu marca. Se ven increíbles en cualquier dispositivo.",
+    title: "Diseño premium",
+    desc: "Interfaces que impactan desde el primer segundo. Limpias, modernas y fieles a tu marca, sin importar el dispositivo.",
   },
   {
+    num: "02",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
-    title: "Entrega rápida",
-    desc: "Landings en 1-2 semanas. Proyectos complejos con cronograma claro desde el inicio.",
+    title: "Entregas rápidas",
+    desc: "Landing pages listas en 1–2 semanas. Proyectos más grandes con cronograma claro desde el día uno. Sin excusas.",
   },
   {
+    num: "03",
     icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
     title: "Stack moderno",
-    desc: "React, Node.js, bases de datos en la nube. Tecnología actual, mantenible y lista para escalar.",
+    desc: "React, Next.js, Node.js y bases de datos en la nube. Código mantenible, escalable y listo para crecer contigo.",
   },
   {
+    num: "04",
     icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
-    title: "Dashboard a medida",
-    desc: "Paneles de control para gestionar tu negocio. Sin tocar una línea de código.",
+    title: "Dashboards a medida",
+    desc: "Paneles de control para que gestiones tu negocio sin saber programar. Métricas, usuarios, contenido — todo en un lugar.",
   },
   {
+    num: "05",
     icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
-    title: "SEO y rendimiento",
-    desc: "Código optimizado para Google y para tus usuarios. Velocidad y visibilidad desde el día uno.",
+    title: "SEO y velocidad",
+    desc: "Código optimizado para Google y para tus usuarios. Primeras posiciones y tiempos de carga que no espantan a nadie.",
   },
   {
+    num: "06",
     icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z",
-    title: "Soporte real",
-    desc: "No desaparezco al entregar. Correcciones, dudas y mejoras durante todo el período de soporte.",
+    title: "Soporte de verdad",
+    desc: "No desaparezco al entregar. Correcciones, dudas y mejoras durante todo tu período de soporte. Siempre disponible.",
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    num: "01",
+    title: "Brief",
+    desc: "Hablamos de tu negocio, tus objetivos y el problema que queremos resolver. Definimos el alcance exacto.",
+    icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+  },
+  {
+    num: "02",
+    title: "Diseño",
+    desc: "Prototipamos la solución visualmente. Revisamos juntos hasta que el diseño sea exactamente lo que imaginabas.",
+    icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01",
+  },
+  {
+    num: "03",
+    title: "Desarrollo",
+    desc: "Código limpio, responsivo y optimizado. Te mantengo informado con actualizaciones regulares en cada etapa.",
+    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+  },
+  {
+    num: "04",
+    title: "Entrega",
+    desc: "Deploy en producción, capacitación del panel y traspaso completo. Tu proyecto vive — y yo sigo disponible.",
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
   },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Laura M.",
-    biz: "Consultora de Marketing",
-    text: "Me hizo la landing en una semana y quedó increíble. Conseguí 3 clientes nuevos el primer mes gracias a la web.",
+    biz: "Consultora de Marketing Digital",
+    text: "Pedí una landing page y en una semana tenía algo que superó todas mis expectativas. El primer mes conseguí 3 clientes nuevos solo gracias a la web. La inversión se pagó sola.",
     avatar: "LM",
+    stars: 5,
   },
   {
     name: "Diego F.",
-    biz: "Tienda Artesanal",
-    text: "Tenía una idea vaga y la convirtió en una tienda online completa. El proceso fue claro y sin sorpresas.",
+    biz: "Fundador, Tienda Artesanal",
+    text: "Tenía una idea muy vaga y la convirtió en una tienda online completa con carrito y pagos. El proceso fue transparente, sin sorpresas de precio y el resultado fue mejor de lo que imaginé.",
     avatar: "DF",
+    stars: 5,
   },
   {
     name: "Sofía R.",
-    biz: "Clínica Dental",
-    text: "El dashboard que desarrolló nos ahorró horas de trabajo cada semana. La inversión se pagó sola en 2 meses.",
+    biz: "Directora, Clínica Dental",
+    text: "El dashboard que nos desarrolló automatizó tareas que nos robaban 3 horas al día. En 2 meses la inversión estaba más que recuperada. 100% lo recomiendo.",
     avatar: "SR",
+    stars: 5,
   },
 ];
 
 const FAQS = [
   {
     q: "¿Cuánto tarda en estar lista mi web?",
-    a: "Una landing page tarda entre 1 y 2 semanas. Un proyecto con dashboard entre 3 y 5 semanas. Una app web completa entre 6 y 10 semanas. Siempre con cronograma definido desde el inicio.",
+    a: "Una landing page: 1–2 semanas. Un sitio informativo: 2–3 semanas. Landing + dashboard: 3–5 semanas. App web completa: 6–10 semanas. Siempre con un cronograma claro desde el primer día para que sepas exactamente qué esperar y cuándo.",
   },
   {
-    q: "¿Qué necesito tener listo para empezar?",
-    a: "Con el logo, colores de tu marca, textos que quieras mostrar y referencias de diseño es suficiente. Si no tenés todo eso, te ayudo a definirlo.",
+    q: "¿Qué necesito tener listo para arrancar?",
+    a: "Con el logo, los colores de tu marca, los textos que querés mostrar y algunas referencias de diseño es suficiente para empezar. Si no tenés todo eso, no hay problema — te ayudo a definirlo en la primera llamada.",
   },
   {
-    q: "¿Puedo pedir cambios después de la entrega?",
-    a: "Incluyo rondas de revisión durante el desarrollo. Una vez entregado, el período de soporte cubre correcciones de bugs. Cambios de alcance se cotizan aparte.",
+    q: "¿Puedo pedir cambios una vez entregado?",
+    a: "Sí. Durante el desarrollo tenés rondas de revisión incluidas para ajustar lo que sea. Una vez entregado, el período de soporte cubre correcciones de bugs y ajustes menores. Los cambios de alcance o nuevas funcionalidades se cotizan aparte, siempre con presupuesto previo.",
   },
   {
     q: "¿El precio incluye hosting y dominio?",
-    a: "Los precios son del desarrollo. El hosting y dominio los gestionás vos (te recomiendo opciones según tu proyecto), o los incluyo si lo acordamos en la cotización.",
+    a: "Los precios cubren únicamente el desarrollo. El hosting y dominio los contratás vos — te recomiendo las mejores opciones según tu proyecto (y muchas veces son muy económicas). Si preferís, puedo incluirlos en la cotización y gestionar todo yo.",
   },
   {
-    q: "¿Trabajás con clientes fuera de tu país?",
-    a: "Sí, trabajo de forma remota con clientes de toda Latinoamérica. La comunicación es por WhatsApp, videollamadas y email, según prefieran.",
+    q: "¿Trabajás con clientes de otros países?",
+    a: "Sí, trabajo 100% remoto con clientes de toda Latinoamérica y España. La comunicación es por WhatsApp, Zoom o email según prefieras. La diferencia horaria nunca ha sido un problema.",
+  },
+  {
+    q: "¿Qué pasa si el proyecto cambia a mitad del desarrollo?",
+    a: "Pasa más seguido de lo que pensás. Si el alcance cambia, paramos, lo re-evaluamos y te presento un ajuste de presupuesto antes de continuar. Sin sorpresas, sin costos ocultos.",
   },
 ];
 
 const HERO_STATS = [
   { value: "15+", label: "Proyectos entregados" },
-  { value: "1-2", suffix: " sem", label: "Entrega landing" },
+  { value: "<24h", label: "Tiempo de respuesta" },
   { value: "100%", label: "Clientes satisfechos" },
 ];
 
 const TECH_ITEMS = [
   "React", "Next.js", "Node.js", "TypeScript", "PostgreSQL",
-  "Supabase", "Tailwind CSS", "Figma", "REST APIs", "Prisma",
+  "Supabase", "Tailwind CSS", "Figma", "REST APIs", "Prisma", "Vercel", "AWS",
 ];
 
 /* ===== HOOKS ===== */
@@ -197,30 +239,26 @@ function useCursor() {
 
     const onEnter = () => document.body.classList.add("cursor--hover");
     const onLeave = () => document.body.classList.remove("cursor--hover");
-    const selectors = "a, button, .feature-card, .plan-card, .testimonial-card, .faq-item";
-    const targets = () => document.querySelectorAll(selectors);
-    const attach = () => targets().forEach(el => {
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-    });
-    const timeout = setTimeout(attach, 300);
+    const timeout = setTimeout(() => {
+      document.querySelectorAll("a, button, .feature-card, .plan-card, .testimonial-card, .faq-item, .process-card")
+        .forEach(el => {
+          el.addEventListener("mouseenter", onEnter);
+          el.addEventListener("mouseleave", onLeave);
+        });
+    }, 400);
 
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
       clearTimeout(timeout);
-      targets().forEach(el => {
-        el.removeEventListener("mouseenter", onEnter);
-        el.removeEventListener("mouseleave", onLeave);
-      });
     };
   }, []);
 
   return { dotRef, ringRef };
 }
 
-/* ===== SUB-COMPONENTS ===== */
+/* ===== COMPONENTS ===== */
 function Cursor() {
   const { dotRef, ringRef } = useCursor();
   return (
@@ -238,8 +276,7 @@ function Marquee() {
       <div className="marquee__track">
         {items.map((item, i) => (
           <span key={i} className="marquee__item">
-            {item}
-            <span className="marquee__sep">·</span>
+            {item}<span className="marquee__sep">·</span>
           </span>
         ))}
       </div>
@@ -262,7 +299,7 @@ function AnimatedSection({ children, id, className = "" }) {
 
 function CheckIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
       <path d="M5 13l4 4L19 7" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -270,7 +307,7 @@ function CheckIcon() {
 
 function StarIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--green)">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--green)">
       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
     </svg>
   );
@@ -284,31 +321,26 @@ function FaqItem({ q, a }) {
         <span className="faq-item__question">{q}</span>
         <span className="faq-item__toggle">{open ? "−" : "+"}</span>
       </div>
-      <div className="faq-item__answer">
-        <p>{a}</p>
-      </div>
+      <div className="faq-item__answer"><p>{a}</p></div>
     </div>
   );
 }
 
 function Logo({ size = "default" }) {
-  const iconSize = size === "small" ? 28 : 32;
-  const fontSize = size === "small" ? 17 : 19;
-  const iconFont = size === "small" ? 13 : 15;
-  const radius = size === "small" ? 7 : 8;
+  const s = size === "small";
   return (
     <a href="#" className="nav__logo">
-      <div className="nav__logo-icon" style={{ width: iconSize, height: iconSize, borderRadius: radius, fontSize: iconFont }}>
+      <div className="nav__logo-icon" style={{ width: s ? 28 : 32, height: s ? 28 : 32, borderRadius: s ? 7 : 8, fontSize: s ? 13 : 15 }}>
         G
       </div>
-      <span className="nav__logo-text" style={{ fontSize }}>
+      <span className="nav__logo-text" style={{ fontSize: s ? 17 : 19 }}>
         Dev<span>Gosth</span>
       </span>
     </a>
   );
 }
 
-/* ===== MAIN COMPONENT ===== */
+/* ===== MAIN ===== */
 export default function DevGosthLanding() {
   const [nombre, setNombre] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -338,17 +370,18 @@ export default function DevGosthLanding() {
       <Cursor />
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
 
-      {/* ===== NAVBAR ===== */}
+      {/* NAV */}
       <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
         <div className="nav__inner">
           <Logo />
           <div className="nav__links">
             <a href="#servicios" className="nav-link">Servicios</a>
+            <a href="#proceso" className="nav-link">Proceso</a>
             <a href="#paquetes" className="nav-link">Paquetes</a>
-            <a href="#testimonios" className="nav-link">Testimonios</a>
+            <a href="#testimonios" className="nav-link">Clientes</a>
             <a href="#faq" className="nav-link">FAQ</a>
             <a href="#contacto">
-              <button className="btn-primary btn-primary--sm">Hablemos</button>
+              <button className="btn-primary btn-primary--sm">Hablemos →</button>
             </a>
           </div>
           <button className="nav__mobile-toggle" onClick={() => setMobileMenu(!mobileMenu)}>
@@ -357,19 +390,17 @@ export default function DevGosthLanding() {
         </div>
         {mobileMenu && (
           <div className="nav__mobile-menu">
-            {["servicios", "paquetes", "testimonios", "faq"].map(s => (
-              <a key={s} href={`#${s}`} className="nav-link" onClick={() => setMobileMenu(false)}>
-                {s.charAt(0).toUpperCase() + s.slice(1)}
-              </a>
+            {[["servicios","Servicios"],["proceso","Proceso"],["paquetes","Paquetes"],["testimonios","Clientes"],["faq","FAQ"]].map(([id,label]) => (
+              <a key={id} href={`#${id}`} className="nav-link" onClick={() => setMobileMenu(false)}>{label}</a>
             ))}
             <a href="#contacto" onClick={() => setMobileMenu(false)}>
-              <button className="btn-primary btn-primary--full">Hablemos</button>
+              <button className="btn-primary btn-primary--full">Hablemos →</button>
             </a>
           </div>
         )}
       </nav>
 
-      {/* ===== HERO ===== */}
+      {/* HERO */}
       <section className="hero">
         <div className="hero__bg">
           <div className="hero__orb hero__orb--1" />
@@ -383,19 +414,19 @@ export default function DevGosthLanding() {
           <div className="hero__content">
             <div className="hero__badge">
               <span className="hero__badge-dot" />
-              <span>Disponible para nuevos proyectos</span>
+              Disponible para nuevos proyectos · CR &amp; Latinoamérica
             </div>
 
             <h1 className="hero__title">
               {[
-                { text: "Webs que", accent: false },
-                { text: "convierten", accent: true },
-                { text: "en clientes", accent: false },
+                { text: "Convierto tu idea", accent: false },
+                { text: "en un producto", accent: true },
+                { text: "digital real", accent: false },
               ].map((line, i) => (
                 <span key={i} className="hero__line">
                   <span
-                    className={`hero__line-inner ${line.accent ? "hero__line-inner--accent" : ""}`}
-                    style={{ animationDelay: `${0.08 + i * 0.13}s` }}
+                    className={`hero__line-inner ${line.accent ? "hero__line-inner--gradient" : ""}`}
+                    style={{ animationDelay: `${0.08 + i * 0.14}s` }}
                   >
                     {line.text}
                   </span>
@@ -404,13 +435,19 @@ export default function DevGosthLanding() {
             </h1>
 
             <p className="hero__desc">
-              Desarrollo landing pages, dashboards y apps web a medida.
-              Diseño profesional, código limpio y entrega rápida.
+              Diseño landing pages, dashboards y apps web que combinan
+              estética premium con código limpio. Entrega puntual, proceso
+              transparente y resultados medibles.
             </p>
 
             <div className="hero__actions">
               <a href="#contacto">
-                <button className="btn-primary">Ver mi trabajo</button>
+                <button className="btn-primary hero__btn-main">
+                  Empezar proyecto
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </button>
               </a>
               <a href="#paquetes">
                 <button className="btn-ghost">Ver paquetes</button>
@@ -420,9 +457,7 @@ export default function DevGosthLanding() {
             <div className="hero__stats">
               {HERO_STATS.map((stat) => (
                 <div key={stat.label} className="hero__stat">
-                  <div className="hero__stat-value">
-                    {stat.value}{stat.suffix || ""}
-                  </div>
+                  <div className="hero__stat-value">{stat.value}</div>
                   <div className="hero__stat-label">{stat.label}</div>
                 </div>
               ))}
@@ -438,51 +473,76 @@ export default function DevGosthLanding() {
                   <span className="mockup__dot mockup__dot--yellow" />
                   <span className="mockup__dot mockup__dot--green" />
                 </div>
-                <span className="mockup__filename">proyecto.tsx</span>
+                <span className="mockup__filename">mi-proyecto.tsx</span>
               </div>
               <div className="mockup__body">
                 <div className="mockup__code">
-                  <p><span className="tok-ln">1</span><span className="tok-kw">export function </span><span className="tok-fn">App</span><span className="tok-p">() {"{"}</span></p>
-                  <p><span className="tok-ln">2</span><span className="tok-sp">  </span><span className="tok-kw">const </span><span className="tok-var">cliente</span><span className="tok-op"> = </span><span className="tok-fn">useCliente</span><span className="tok-p">()</span></p>
-                  <p><span className="tok-ln">3</span><span className="tok-sp">  </span><span className="tok-kw">return </span><span className="tok-p">(</span></p>
-                  <p><span className="tok-ln">4</span><span className="tok-sp">    </span><span className="tok-tag">&lt;Landing</span></p>
-                  <p><span className="tok-ln">5</span><span className="tok-sp">      </span><span className="tok-prop">diseño</span><span className="tok-op">=</span><span className="tok-str">"premium"</span></p>
-                  <p><span className="tok-ln">6</span><span className="tok-sp">      </span><span className="tok-prop">entrega</span><span className="tok-op">=</span><span className="tok-str">"rápida"</span></p>
-                  <p><span className="tok-ln">7</span><span className="tok-sp">      </span><span className="tok-prop">soporte</span><span className="tok-op">=</span><span className="tok-p">{"{"}</span><span className="tok-bool">true</span><span className="tok-p">{"}"}</span></p>
+                  <p><span className="tok-ln">1</span><span className="tok-kw">export function </span><span className="tok-fn">MiProyecto</span><span className="tok-p">() {"{"}</span></p>
+                  <p><span className="tok-ln">2</span><span className="tok-sp">  </span><span className="tok-kw">return </span><span className="tok-p">(</span></p>
+                  <p><span className="tok-ln">3</span><span className="tok-sp">    </span><span className="tok-tag">&lt;App</span></p>
+                  <p><span className="tok-ln">4</span><span className="tok-sp">      </span><span className="tok-prop">diseño</span><span className="tok-op">=</span><span className="tok-str">"premium"</span></p>
+                  <p><span className="tok-ln">5</span><span className="tok-sp">      </span><span className="tok-prop">entrega</span><span className="tok-op">=</span><span className="tok-str">"puntual"</span></p>
+                  <p><span className="tok-ln">6</span><span className="tok-sp">      </span><span className="tok-prop">soporte</span><span className="tok-op">=</span><span className="tok-p">{"{"}</span><span className="tok-bool">true</span><span className="tok-p">{"}"}</span></p>
+                  <p><span className="tok-ln">7</span><span className="tok-sp">      </span><span className="tok-prop">garantía</span><span className="tok-op">=</span><span className="tok-str">"100%"</span></p>
                   <p><span className="tok-ln">8</span><span className="tok-sp">    </span><span className="tok-tag">/&gt;</span></p>
                   <p><span className="tok-ln">9</span><span className="tok-sp">  </span><span className="tok-p">)</span></p>
                   <p><span className="tok-ln">10</span><span className="tok-p">{"}"}</span></p>
                 </div>
-                <div className="mockup__status">
-                  <span className="mockup__status-dot" />
-                  <span className="mockup__status-text">Compilando tu proyecto...</span>
+                <div className="mockup__terminal">
+                  <p className="mockup__terminal-line">
+                    <span className="tok-t-dim">$</span> npm run build
+                  </p>
+                  <p className="mockup__terminal-line">
+                    <span className="tok-t-green">✓</span> Build completado en 1.2s
+                  </p>
+                  <p className="mockup__terminal-line mockup__terminal-cursor">
+                    <span className="tok-t-dim">$</span>
+                    <span className="mockup__cursor-blink">▌</span>
+                  </p>
                 </div>
+              </div>
+              <div className="mockup__footer-bar">
+                <span className="mockup__status-dot" />
+                <span className="mockup__status-text">Listo para producción</span>
+                <span className="mockup__badge">TypeScript</span>
+                <span className="mockup__badge">React</span>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="hero__scroll-hint" aria-hidden="true">
+          <span>scroll</span>
+          <div className="hero__scroll-line" />
+        </div>
       </section>
 
-      {/* ===== MARQUEE ===== */}
+      {/* MARQUEE */}
       <Marquee />
 
-      {/* ===== SERVICES ===== */}
+      {/* SERVICES */}
       <AnimatedSection id="servicios" className="section-alt">
         <div className="container section">
           <div className="section__header">
             <span className="section-tag">Servicios</span>
-            <h2 className="section__title">Todo lo que necesitás para tu presencia digital</h2>
+            <h2 className="section__title">
+              Todo lo que necesitás<br />
+              <span className="text-gradient">para crecer online</span>
+            </h2>
             <p className="section__subtitle">
-              Desde una página de presentación hasta sistemas web completos. Siempre con diseño cuidado y código de calidad.
+              Desde una landing de alto impacto hasta sistemas web completos. Siempre con diseño premium y código de calidad.
             </p>
           </div>
           <div className="features-grid">
             {SERVICES.map((service, i) => (
               <div key={i} className="feature-card">
-                <div className="feature-card__icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={service.icon} />
-                  </svg>
+                <div className="feature-card__top">
+                  <div className="feature-card__icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={service.icon} />
+                    </svg>
+                  </div>
+                  <span className="feature-card__num">{service.num}</span>
                 </div>
                 <h3 className="feature-card__title">{service.title}</h3>
                 <p className="feature-card__desc">{service.desc}</p>
@@ -492,28 +552,61 @@ export default function DevGosthLanding() {
         </div>
       </AnimatedSection>
 
-      {/* ===== PRICING ===== */}
-      <AnimatedSection id="paquetes">
+      {/* PROCESS */}
+      <AnimatedSection id="proceso">
+        <div className="container section">
+          <div className="section__header">
+            <span className="section-tag">Proceso</span>
+            <h2 className="section__title">
+              Así trabajamos<br />
+              <span className="text-gradient">juntos</span>
+            </h2>
+            <p className="section__subtitle">
+              Un proceso claro y transparente de principio a fin. Sin sorpresas, sin cajas negras.
+            </p>
+          </div>
+          <div className="process-grid">
+            {PROCESS_STEPS.map((step, i) => (
+              <div key={i} className="process-card">
+                <div className="process-card__num">{step.num}</div>
+                <div className="process-card__icon-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={step.icon} />
+                  </svg>
+                </div>
+                <h3 className="process-card__title">{step.title}</h3>
+                <p className="process-card__desc">{step.desc}</p>
+                {i < PROCESS_STEPS.length - 1 && <div className="process-card__connector" aria-hidden="true" />}
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* PRICING */}
+      <AnimatedSection id="paquetes" className="section-alt">
         <div className="container section">
           <div className="section__header">
             <span className="section-tag">Paquetes</span>
-            <h2 className="section__title">Precios claros, sin sorpresas</h2>
+            <h2 className="section__title">
+              Precios claros,<br />
+              <span className="text-gradient">sin sorpresas</span>
+            </h2>
             <p className="section__subtitle">
-              Elegís el paquete que mejor se adapta a tu proyecto. Todos incluyen diseño personalizado.
+              Elegís el paquete que mejor se adapta a tu proyecto. Todos incluyen diseño personalizado y soporte post-entrega.
             </p>
           </div>
           <div className="plans-grid">
             {PLANS.map((plan, i) => (
               <div key={i} className={`plan-card ${plan.popular ? "plan-card--popular" : ""}`}>
-                {plan.popular && <div className="plan-card__badge">Más popular</div>}
+                {plan.popular && <div className="plan-card__badge">⭐ Más popular</div>}
                 <div className="plan-card__name">{plan.name}</div>
                 <div className="plan-card__price">{plan.price}</div>
                 <p className="plan-card__desc">{plan.desc}</p>
                 <ul className="plan-card__features">
                   {plan.features.map((feat, j) => (
                     <li key={j} className="plan-card__feature">
-                      <CheckIcon />
-                      {feat}
+                      <CheckIcon />{feat}
                     </li>
                   ))}
                 </ul>
@@ -525,21 +618,28 @@ export default function DevGosthLanding() {
               </div>
             ))}
           </div>
+          <p className="plans-note">
+            ¿Tu proyecto no encaja en ningún paquete?{" "}
+            <a href="#contacto" className="plans-note__link">Hablemos y lo cotizamos a medida →</a>
+          </p>
         </div>
       </AnimatedSection>
 
-      {/* ===== TESTIMONIALS ===== */}
-      <AnimatedSection id="testimonios" className="section-alt">
+      {/* TESTIMONIALS */}
+      <AnimatedSection id="testimonios">
         <div className="container section">
           <div className="section__header">
-            <span className="section-tag">Testimonios</span>
-            <h2 className="section__title">Clientes que ya dieron el paso</h2>
+            <span className="section-tag">Clientes</span>
+            <h2 className="section__title">
+              Resultados que<br />
+              <span className="text-gradient">hablan solos</span>
+            </h2>
           </div>
           <div className="testimonials-grid">
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="testimonial-card">
                 <div className="testimonial-card__stars">
-                  {[...Array(5)].map((_, s) => <StarIcon key={s} />)}
+                  {[...Array(t.stars)].map((_, s) => <StarIcon key={s} />)}
                 </div>
                 <p className="testimonial-card__text">"{t.text}"</p>
                 <div className="testimonial-card__author">
@@ -555,12 +655,13 @@ export default function DevGosthLanding() {
         </div>
       </AnimatedSection>
 
-      {/* ===== FAQ ===== */}
-      <AnimatedSection id="faq">
+      {/* FAQ */}
+      <AnimatedSection id="faq" className="section-alt">
         <div className="container--narrow section">
           <div className="section__header">
             <span className="section-tag">FAQ</span>
             <h2 className="section__title">Preguntas frecuentes</h2>
+            <p className="section__subtitle">Todo lo que querés saber antes de arrancar.</p>
           </div>
           {FAQS.map((faq, i) => (
             <FaqItem key={i} q={faq.q} a={faq.a} />
@@ -568,13 +669,52 @@ export default function DevGosthLanding() {
         </div>
       </AnimatedSection>
 
-      {/* ===== CONTACT ===== */}
+      {/* CTA BANNER */}
+      <section className="cta-banner">
+        <div className="cta-banner__bg">
+          <div className="cta-banner__orb cta-banner__orb--1" />
+          <div className="cta-banner__orb cta-banner__orb--2" />
+          <div className="hero__grid" style={{ opacity: 0.4 }} />
+          <div className="hero__noise" />
+        </div>
+        <div className="cta-banner__inner">
+          <span className="section-tag">¿Empezamos?</span>
+          <h2 className="cta-banner__title">
+            Tu próximo proyecto
+            <br />
+            <span className="text-gradient">empieza con una conversación</span>
+          </h2>
+          <p className="cta-banner__desc">
+            Contame tu idea. En menos de 24 horas te respondo con una propuesta real.
+          </p>
+          <div className="cta-banner__actions">
+            <a href="#contacto">
+              <button className="btn-primary cta-banner__btn">
+                Escribime ahora
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </a>
+            <a href="https://wa.me/50685763191" target="_blank" rel="noopener noreferrer">
+              <button className="btn-ghost">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                </svg>
+                WhatsApp
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
       <AnimatedSection id="contacto" className="section-alt">
         <div className="container--cta contact">
           <span className="section-tag">Contacto</span>
-          <h2 className="section__title">¿Listo para empezar?</h2>
+          <h2 className="section__title">Hablemos de tu proyecto</h2>
           <p className="contact__desc">
-            Contame tu idea y te respondo en menos de 24 horas con una propuesta a medida.
+            Sin compromiso. Contame tu idea y recibís una propuesta a medida en menos de 24 horas.
           </p>
 
           <div className="contact__layout">
@@ -582,21 +722,21 @@ export default function DevGosthLanding() {
               <p className="contact__info-title">Contacto directo</p>
               <a href="mailto:jarethmoraga@icloud.com" className="contact__info-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="contact__info-icon">
-                  <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 7 10-7" />
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
                 </svg>
                 jarethmoraga@icloud.com
               </a>
               <a href="tel:+50685763191" className="contact__info-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="contact__info-icon">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z" />
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/>
                 </svg>
                 +506 8576 3191
               </a>
               <a href="https://wa.me/50685763191" target="_blank" rel="noopener noreferrer" className="contact__info-item contact__info-item--whatsapp">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="contact__info-icon">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
                 </svg>
-                WhatsApp: +506 8576 3191
+                WhatsApp disponible
               </a>
             </div>
 
@@ -607,53 +747,80 @@ export default function DevGosthLanding() {
                 <div className="contact__success">
                   <div className="contact__success-icon">✓</div>
                   <p className="contact__success-title">¡Mensaje recibido!</p>
-                  <p className="contact__success-text">Te respondo a la brevedad. Gracias por contactarme.</p>
+                  <p className="contact__success-text">Te respondo en menos de 24 horas. ¡Gracias por contactarme!</p>
                 </div>
               ) : (
                 <div className="contact__form">
                   <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Tu nombre" className="contact__input" />
-                  <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} placeholder="Contame tu proyecto..." className="contact__textarea" rows={4} />
-                  <button className="btn-primary btn-primary--full" onClick={handleSubmit}>Enviar mensaje</button>
+                  <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} placeholder="Contame tu proyecto: ¿qué necesitás y cuándo?" className="contact__textarea" rows={4} />
+                  <button className="btn-primary btn-primary--full" onClick={handleSubmit}>
+                    Enviar mensaje →
+                  </button>
                 </div>
               )}
-              <p className="contact__disclaimer">Sin compromiso. Respuesta en menos de 24 horas.</p>
+              <p className="contact__disclaimer">Sin compromiso · Respuesta garantizada en menos de 24h</p>
             </div>
           </div>
         </div>
       </AnimatedSection>
 
-      {/* ===== FOOTER ===== */}
+      {/* FOOTER */}
       <footer className="footer">
-        <div className="footer__grid">
-          <div>
+        <div className="footer__top">
+          <div className="footer__brand">
             <Logo size="small" />
-            <p className="footer__brand-desc" style={{ marginTop: 16 }}>
-              Desarrollo web profesional para negocios que quieren crecer en internet.
+            <p className="footer__brand-desc">
+              Desarrollo web profesional para negocios que quieren crecer en internet. Desde Costa Rica para toda Latinoamérica.
             </p>
+            <div className="footer__socials">
+              <a href="https://wa.me/50685763191" target="_blank" rel="noopener noreferrer" className="footer__social" title="WhatsApp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                </svg>
+              </a>
+              <a href="mailto:jarethmoraga@icloud.com" className="footer__social" title="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
+                </svg>
+              </a>
+              <a href="#" className="footer__social" title="GitHub">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="#" className="footer__social" title="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
           </div>
-          <div>
-            <h4 className="footer__col-title">Servicios</h4>
-            {["Landing Page", "Landing + Dashboard", "App Web Completa", "Consultoría"].map((link) => (
-              <a key={link} href="#paquetes" className="footer__link">{link}</a>
-            ))}
-          </div>
-          <div>
-            <h4 className="footer__col-title">Info</h4>
-            {["Servicios", "Paquetes", "Testimonios", "FAQ"].map((link) => (
-              <a key={link} href={`#${link.toLowerCase()}`} className="footer__link">{link}</a>
-            ))}
-          </div>
-          <div>
-            <h4 className="footer__col-title">Contacto</h4>
-            <a href="#contacto" className="footer__link">Formulario</a>
-            <a href="https://wa.me/50685763191" className="footer__link">WhatsApp</a>
-            <a href="#" className="footer__link">LinkedIn</a>
-            <a href="#" className="footer__link">GitHub</a>
+
+          <div className="footer__links-group">
+            <div>
+              <h4 className="footer__col-title">Servicios</h4>
+              {["Landing Page", "Página Informativa", "Landing + Dashboard", "App Web Completa"].map((l) => (
+                <a key={l} href="#paquetes" className="footer__link">{l}</a>
+              ))}
+            </div>
+            <div>
+              <h4 className="footer__col-title">Navegación</h4>
+              {[["#servicios","Servicios"],["#proceso","Proceso"],["#testimonios","Clientes"],["#faq","FAQ"]].map(([href,label]) => (
+                <a key={href} href={href} className="footer__link">{label}</a>
+              ))}
+            </div>
+            <div>
+              <h4 className="footer__col-title">Contacto</h4>
+              <a href="#contacto" className="footer__link">Formulario</a>
+              <a href="https://wa.me/50685763191" className="footer__link">WhatsApp</a>
+              <a href="mailto:jarethmoraga@icloud.com" className="footer__link">Email</a>
+            </div>
           </div>
         </div>
+
         <div className="footer__bottom">
-          <span className="footer__copy">&copy; 2026 DevGosth. Todos los derechos reservados.</span>
-          <span className="footer__copy">Hecho con dedicación</span>
+          <span className="footer__copy">&copy; 2026 DevGosth · Todos los derechos reservados.</span>
+          <span className="footer__copy footer__copy--built">Diseñado y desarrollado con dedicación 🇨🇷</span>
         </div>
       </footer>
     </div>

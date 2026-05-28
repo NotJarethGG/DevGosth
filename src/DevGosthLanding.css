@@ -216,14 +216,8 @@ html { scroll-behavior: smooth; }
   display: flex; align-items: center; justify-content: space-between;
   height: 64px;
 }
-.nav__logo { text-decoration: none; display: flex; align-items: center; gap: 9px; }
-.nav__logo-icon {
-  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; color: #000; font-family: var(--font-display); flex-shrink: 0;
-}
-.nav__logo-text { font-family: var(--font-display); font-weight: 700; color: var(--text-1); }
-.nav__logo-text span { color: var(--green); }
+.nav__logo { text-decoration: none; display: flex; align-items: center; }
+.nav__logo-img { width: auto; object-fit: contain; display: block; }
 
 .nav__links { display: flex; gap: 28px; align-items: center; }
 .nav-link {
@@ -1117,5 +1111,4 @@ html { scroll-behavior: smooth; }
   .hero__stat { padding: 0; }
   .section__title { font-size: 25px; }
   .btn-primary, .btn-ghost { font-size: 13px; padding: 12px 18px; }
-  .nav__logo-text { font-size: 15px !important; }
 }

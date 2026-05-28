@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./DevGosthLanding.css";
+import devgosthLogo from "./assets/devgosth-logo.png";
 
 /* ===== DATA ===== */
 const PLANS = [
@@ -330,12 +331,12 @@ function Logo({ size = "default" }) {
   const s = size === "small";
   return (
     <a href="#" className="nav__logo">
-      <div className="nav__logo-icon" style={{ width: s ? 28 : 32, height: s ? 28 : 32, borderRadius: s ? 7 : 8, fontSize: s ? 13 : 15 }}>
-        G
-      </div>
-      <span className="nav__logo-text" style={{ fontSize: s ? 17 : 19 }}>
-        Dev<span>Gosth</span>
-      </span>
+      <img
+        src={devgosthLogo}
+        alt="DevGosth"
+        className="nav__logo-img"
+        style={{ height: s ? 52 : 64 }}
+      />
     </a>
   );
 }

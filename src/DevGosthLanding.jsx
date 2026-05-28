@@ -340,6 +340,85 @@ function Logo({ size = "default" }) {
   );
 }
 
+function HeroBrowser() {
+  return (
+    <div className="browser">
+      <div className="browser__bar">
+        <div className="browser__dots">
+          <span /><span /><span />
+        </div>
+        <div className="browser__url">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          tu-proyecto.com
+        </div>
+        <div className="browser__bar-spacer" />
+      </div>
+
+      <div className="browser__page">
+        <div className="bw-nav">
+          <div className="bw-nav__logo" />
+          <div className="bw-nav__links"><div /><div /><div /></div>
+          <div className="bw-nav__cta" />
+        </div>
+
+        <div className="bw-hero">
+          <div className="bw-badge" />
+          <div className="bw-title">
+            <div className="bw-line bw-line--xl" />
+            <div className="bw-line bw-line--lg bw-line--accent" />
+            <div className="bw-line bw-line--md" />
+          </div>
+          <div className="bw-desc">
+            <div className="bw-line bw-line--sm" />
+            <div className="bw-line bw-line--sm bw-line--short" />
+          </div>
+          <div className="bw-btns">
+            <div className="bw-btn bw-btn--filled" />
+            <div className="bw-btn" />
+          </div>
+        </div>
+
+        <div className="bw-cards">
+          <div className="bw-card"><div className="bw-card__dot" /><div className="bw-card__lines"><div /><div /></div></div>
+          <div className="bw-card bw-card--active"><div className="bw-card__dot bw-card__dot--green" /><div className="bw-card__lines"><div /><div /></div></div>
+          <div className="bw-card"><div className="bw-card__dot" /><div className="bw-card__lines"><div /><div /></div></div>
+        </div>
+
+        <div className="bw-footer">
+          <div className="bw-footer__bar" />
+          <div className="bw-footer__bar bw-footer__bar--sm" />
+        </div>
+      </div>
+
+      <div className="browser__chip browser__chip--tl">
+        <div className="browser__chip-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div className="browser__chip-body">
+          <div className="browser__chip-label">Conversión</div>
+          <div className="browser__chip-value">+127%</div>
+        </div>
+      </div>
+
+      <div className="browser__chip browser__chip--br">
+        <div className="browser__chip-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div className="browser__chip-body">
+          <div className="browser__chip-label">PageSpeed</div>
+          <div className="browser__chip-value">98 / 100</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ===== MAIN ===== */
 export default function DevGosthLanding() {
   const [nombre, setNombre] = useState("");
@@ -403,48 +482,34 @@ export default function DevGosthLanding() {
       {/* HERO */}
       <section className="hero">
         <div className="hero__bg">
-          <div className="hero__orb hero__orb--1" />
-          <div className="hero__orb hero__orb--2" />
-          <div className="hero__orb hero__orb--3" />
+          <div className="hero__orb" />
           <div className="hero__grid" />
           <div className="hero__noise" />
         </div>
 
         <div className="hero__inner">
+          {/* LEFT — text */}
           <div className="hero__content">
             <div className="hero__badge">
               <span className="hero__badge-dot" />
-              Disponible para nuevos proyectos · CR &amp; Latinoamérica
+              Disponible · CR &amp; Latinoamérica
             </div>
 
             <h1 className="hero__title">
-              {[
-                { text: "Convierto tu idea", accent: false },
-                { text: "en un producto", accent: true },
-                { text: "digital real", accent: false },
-              ].map((line, i) => (
-                <span key={i} className="hero__line">
-                  <span
-                    className={`hero__line-inner ${line.accent ? "hero__line-inner--gradient" : ""}`}
-                    style={{ animationDelay: `${0.08 + i * 0.14}s` }}
-                  >
-                    {line.text}
-                  </span>
-                </span>
-              ))}
+              Diseño y desarrollo<br />
+              web <span className="hero__title-em">que convierte.</span>
             </h1>
 
             <p className="hero__desc">
-              Diseño landing pages, dashboards y apps web que combinan
-              estética premium con código limpio. Entrega puntual, proceso
-              transparente y resultados medibles.
+              Landing pages, dashboards y apps web a medida.
+              Diseño premium, código limpio y entrega puntual — sin excusas.
             </p>
 
             <div className="hero__actions">
               <a href="#contacto">
-                <button className="btn-primary hero__btn-main">
+                <button className="btn-primary">
                   Empezar proyecto
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </button>
@@ -455,65 +520,22 @@ export default function DevGosthLanding() {
             </div>
 
             <div className="hero__stats">
-              {HERO_STATS.map((stat) => (
+              {HERO_STATS.map((stat, i) => (
                 <div key={stat.label} className="hero__stat">
-                  <div className="hero__stat-value">{stat.value}</div>
-                  <div className="hero__stat-label">{stat.label}</div>
+                  {i > 0 && <div className="hero__stat-sep" />}
+                  <div>
+                    <div className="hero__stat-value">{stat.value}</div>
+                    <div className="hero__stat-label">{stat.label}</div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Code mockup */}
-          <div className="hero__mockup">
-            <div className="mockup">
-              <div className="mockup__bar">
-                <div className="mockup__dots">
-                  <span className="mockup__dot mockup__dot--red" />
-                  <span className="mockup__dot mockup__dot--yellow" />
-                  <span className="mockup__dot mockup__dot--green" />
-                </div>
-                <span className="mockup__filename">mi-proyecto.tsx</span>
-              </div>
-              <div className="mockup__body">
-                <div className="mockup__code">
-                  <p><span className="tok-ln">1</span><span className="tok-kw">export function </span><span className="tok-fn">MiProyecto</span><span className="tok-p">() {"{"}</span></p>
-                  <p><span className="tok-ln">2</span><span className="tok-sp">  </span><span className="tok-kw">return </span><span className="tok-p">(</span></p>
-                  <p><span className="tok-ln">3</span><span className="tok-sp">    </span><span className="tok-tag">&lt;App</span></p>
-                  <p><span className="tok-ln">4</span><span className="tok-sp">      </span><span className="tok-prop">diseño</span><span className="tok-op">=</span><span className="tok-str">"premium"</span></p>
-                  <p><span className="tok-ln">5</span><span className="tok-sp">      </span><span className="tok-prop">entrega</span><span className="tok-op">=</span><span className="tok-str">"puntual"</span></p>
-                  <p><span className="tok-ln">6</span><span className="tok-sp">      </span><span className="tok-prop">soporte</span><span className="tok-op">=</span><span className="tok-p">{"{"}</span><span className="tok-bool">true</span><span className="tok-p">{"}"}</span></p>
-                  <p><span className="tok-ln">7</span><span className="tok-sp">      </span><span className="tok-prop">garantía</span><span className="tok-op">=</span><span className="tok-str">"100%"</span></p>
-                  <p><span className="tok-ln">8</span><span className="tok-sp">    </span><span className="tok-tag">/&gt;</span></p>
-                  <p><span className="tok-ln">9</span><span className="tok-sp">  </span><span className="tok-p">)</span></p>
-                  <p><span className="tok-ln">10</span><span className="tok-p">{"}"}</span></p>
-                </div>
-                <div className="mockup__terminal">
-                  <p className="mockup__terminal-line">
-                    <span className="tok-t-dim">$</span> npm run build
-                  </p>
-                  <p className="mockup__terminal-line">
-                    <span className="tok-t-green">✓</span> Build completado en 1.2s
-                  </p>
-                  <p className="mockup__terminal-line mockup__terminal-cursor">
-                    <span className="tok-t-dim">$</span>
-                    <span className="mockup__cursor-blink">▌</span>
-                  </p>
-                </div>
-              </div>
-              <div className="mockup__footer-bar">
-                <span className="mockup__status-dot" />
-                <span className="mockup__status-text">Listo para producción</span>
-                <span className="mockup__badge">TypeScript</span>
-                <span className="mockup__badge">React</span>
-              </div>
-            </div>
+          {/* RIGHT — browser preview */}
+          <div className="hero__visual">
+            <HeroBrowser />
           </div>
-        </div>
-
-        <div className="hero__scroll-hint" aria-hidden="true">
-          <span>scroll</span>
-          <div className="hero__scroll-line" />
         </div>
       </section>
 

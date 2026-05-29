@@ -156,10 +156,11 @@ function RevealWords({ text, className = "", delay = 0 }) {
   const ref = useRef(null);
   const isInView = useFramerInView(ref, { once: true, amount: 0.4 });
   return (
-    <span ref={ref} className={className} style={{ display: "inline" }}>
+    <span ref={ref} style={{ display: "inline" }}>
       {text.split(" ").map((w, i) => (
-        <span key={i} style={{ overflow: "hidden", display: "inline-block", marginRight: "0.3em" }}>
+        <span key={i} style={{ overflow: "hidden", display: "inline-block", marginRight: "0.3em", paddingBottom: "0.12em", verticalAlign: "bottom" }}>
           <motion.span
+            className={className}
             style={{ display: "inline-block" }}
             initial={{ y: "110%", opacity: 0 }}
             animate={isInView ? { y: "0%", opacity: 1 } : {}}
@@ -185,7 +186,13 @@ function CountUp({ target, suffix = "", prefix = "", duration = 1800, started })
 
 /* ─── CURSOR ─── */
 function Cursor() {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    const touch = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+    setIsTouch(touch);
+  }, []);
   const { dotRef, ringRef } = useCursor();
+  if (isTouch) return null;
   return (<><div ref={ringRef} className="cursor__ring" /><div ref={dotRef} className="cursor__dot" /></>);
 }
 
@@ -393,6 +400,7 @@ export default function DevGosthLanding() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [statsStarted, setStatsStarted] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const [lang, setLang] = useState(() => navigator.language?.startsWith("es") ? "es" : "en");
   const t = translations[lang];
 
@@ -403,6 +411,14 @@ export default function DevGosthLanding() {
       const el = document.documentElement;
       setScrollProgress((el.scrollHeight - el.clientHeight) > 0 ? (y / (el.scrollHeight - el.clientHeight)) * 100 : 0);
       if (y > 60) setStatsStarted(true);
+      const sections = ["servicios", "proceso", "paquetes", "testimonios", "faq", "contacto"];
+      const mid = y + window.innerHeight / 2.5;
+      let current = "";
+      for (const id of sections) {
+        const sec = document.getElementById(id);
+        if (sec && sec.offsetTop <= mid) current = id;
+      }
+      setActiveSection(current);
     };
     window.addEventListener("scroll", h, { passive: true });
     const timer = setTimeout(() => setStatsStarted(true), 1400);
@@ -428,16 +444,23 @@ export default function DevGosthLanding() {
       <Cursor />
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
 
+      {/* ─ AMBIENT BLOBS ─ */}
+      <div className="ambient-blobs">
+        <div className="blob blob--1" />
+        <div className="blob blob--2" />
+        <div className="blob blob--3" />
+      </div>
+
       {/* ─ NAV ─ */}
       <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
         <div className="nav__inner">
           <Logo />
           <div className="nav__links">
-            <a href="#servicios" className="nav-link">{t.nav.services}</a>
-            <a href="#proceso" className="nav-link">{t.nav.process}</a>
-            <a href="#paquetes" className="nav-link">{t.nav.packages}</a>
-            <a href="#testimonios" className="nav-link">{t.nav.clients}</a>
-            <a href="#faq" className="nav-link">{t.nav.faq}</a>
+            <a href="#servicios" className={`nav-link ${activeSection === "servicios" ? "nav-link--active" : ""}`}>{t.nav.services}</a>
+            <a href="#proceso" className={`nav-link ${activeSection === "proceso" ? "nav-link--active" : ""}`}>{t.nav.process}</a>
+            <a href="#paquetes" className={`nav-link ${activeSection === "paquetes" ? "nav-link--active" : ""}`}>{t.nav.packages}</a>
+            <a href="#testimonios" className={`nav-link ${activeSection === "testimonios" ? "nav-link--active" : ""}`}>{t.nav.clients}</a>
+            <a href="#faq" className={`nav-link ${activeSection === "faq" ? "nav-link--active" : ""}`}>{t.nav.faq}</a>
             <LangToggle lang={lang} setLang={setLang} />
             <a href="#contacto">
               <motion.button className="btn-primary btn-primary--sm" whileHover={{ scale: 1.06, rotateY: 4 }} whileTap={{ scale: 0.95 }} style={{ transformPerspective: 400 }}>

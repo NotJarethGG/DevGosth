@@ -90,7 +90,13 @@ function TiltCard({ children, className = "", style = {}, popularCard = false, p
   const gx = useTransform(mx, [-0.5, 0.5], [10, 90]);
   const gy = useTransform(my, [-0.5, 0.5], [10, 90]);
   const glowBg = useMotionTemplate`radial-gradient(circle at ${gx}% ${gy}%, rgba(0,232,124,0.18) 0%, transparent 65%)`;
-  const onMouseMove = (e) => { const r = e.currentTarget.getBoundingClientRect(); mx.set((e.clientX - r.left) / r.width - 0.5); my.set((e.clientY - r.top) / r.height - 0.5); };
+  const onMouseMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const rx = e.clientX - r.left, ry = e.clientY - r.top;
+    mx.set(rx / r.width - 0.5); my.set(ry / r.height - 0.5);
+    e.currentTarget.style.setProperty('--sp-x', rx + 'px');
+    e.currentTarget.style.setProperty('--sp-y', ry + 'px');
+  };
   const onMouseLeave = () => { mx.set(0); my.set(0); };
   return (
     <motion.div
@@ -270,6 +276,45 @@ const PARTICLES = [
 ];
 function HeroParticles() {
   return (<>{PARTICLES.map((p, i) => (<motion.span key={i} className="hero__particle" style={{ width: p.size, height: p.size, left: p.left, top: p.top, boxShadow: `0 0 ${p.size * 4}px var(--green)` }} animate={{ opacity: [0.1, 0.7, 0.15, 0.6, 0.1], scale: [1, 1.9, 0.6, 1.5, 1], y: [0, -22, 8, -16, 0] }} transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: "easeInOut" }} />))}</>);
+}
+
+/* ─── HERO TERMINAL ─── */
+const TERMINAL_LINES = [
+  { prefix: "$", text: "git push origin main", style: { color: "var(--text-3)" } },
+  { prefix: "✓", text: "Build exitoso · 1.2s", style: { color: "var(--green)" } },
+  { prefix: "›", text: "Deployed a producción", style: { color: "var(--text-2)" } },
+];
+function HeroTerminal() {
+  const [visible, setVisible] = useState(0);
+  useEffect(() => {
+    if (visible < TERMINAL_LINES.length) {
+      const t = setTimeout(() => setVisible(v => v + 1), 900);
+      return () => clearTimeout(t);
+    }
+  }, [visible]);
+  return (
+    <motion.div
+      className="hero__terminal"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 2.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="hero__terminal-bar">
+        <span className="hero__terminal-dot" /><span className="hero__terminal-dot" /><span className="hero__terminal-dot" />
+        <span className="hero__terminal-title">deploy · main</span>
+      </div>
+      <div className="hero__terminal-body">
+        {TERMINAL_LINES.slice(0, visible).map((line, i) => (
+          <motion.div key={i} className={`hero__terminal-line${i < visible - 1 ? " hero__terminal-line--done" : ""}`} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
+            <span className="hero__terminal-prefix" style={i < visible - 1 ? { color: "var(--text-4)" } : line.style}>{line.prefix}</span>
+            <span>{line.text}</span>
+            {i === visible - 1 && visible < TERMINAL_LINES.length && <span className="hero__terminal-cursor" />}
+            {i === visible - 1 && visible === TERMINAL_LINES.length && <span style={{ color: "var(--green)", marginLeft: 6, fontSize: 11 }}>✓</span>}
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
 }
 
 /* ─── HERO BROWSER ─── */
@@ -577,7 +622,10 @@ export default function DevGosthLanding() {
           </div>
 
           <motion.div className="hero__visual" initial={{ opacity: 0, x: 60, rotateY: -20, scale: 0.9 }} animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} transition={{ duration: 1, delay: 0.22, ease: [0.16, 1, 0.3, 1] }} style={{ transformPerspective: 1000 }}>
-            <HeroBrowser />
+            <div className="hero__visual-stack">
+              <HeroBrowser />
+              <HeroTerminal />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -649,7 +697,7 @@ export default function DevGosthLanding() {
             style={{ transformPerspective: 1200 }}
           >
             {t.process.steps.map((step, i) => (
-              <motion.div key={i} variants={gridItem3D} style={{ transformPerspective: 800 }}>
+              <motion.div key={i} variants={gridItem3D} style={{ transformPerspective: 800 }} className="process-step-wrap">
                 <TiltCard className="process-card" perspective={700} maxTilt={10}>
                   <div className="process-card__num">0{i + 1}</div>
                   <div className="process-card__icon-wrap">
@@ -657,8 +705,16 @@ export default function DevGosthLanding() {
                   </div>
                   <h3 className="process-card__title">{step.title}</h3>
                   <p className="process-card__desc">{step.desc}</p>
-                  {i < t.process.steps.length - 1 && <div className="process-card__connector" aria-hidden="true" />}
                 </TiltCard>
+                {i < t.process.steps.length - 1 && (
+                  <motion.div
+                    className="process-connector-arrow"
+                    initial={{ opacity: 0, x: -8 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.45 + i * 0.12, duration: 0.4 }}
+                  />
+                )}
               </motion.div>
             ))}
           </motion.div>

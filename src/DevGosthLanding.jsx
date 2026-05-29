@@ -54,6 +54,8 @@ function useInView(threshold = 0.12) {
 function useCursor() {
   const dotRef = useRef(null), ringRef = useRef(null), posRef = useRef({ x: -100, y: -100 });
   useEffect(() => {
+    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches || "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isTouch) return;
     const onMove = (e) => {
       posRef.current = { x: e.clientX, y: e.clientY };
       if (dotRef.current) dotRef.current.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
@@ -314,6 +316,14 @@ function HeroBrowser() {
 /* ─── PROJECTS ─── */
 function ProjectsScroller() {
   const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.matchMedia("(max-width: 1024px)").matches);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-16%"]);
   const xSlow = useTransform(scrollYProgress, [0, 1], ["0%", "6%"]);
@@ -329,39 +339,52 @@ function ProjectsScroller() {
           </h2>
         </div>
       </div>
-      <div className="projects-track-wrap">
-        <motion.div className="projects-track" style={{ x }}>
-          {PROJECTS.map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} />
-          ))}
-        </motion.div>
-      </div>
+
+      {isMobile ? (
+        /* Móvil: scroll horizontal táctil nativo (swipe) */
+        <div className="projects-track-wrap projects-track-wrap--scroll">
+          <div className="projects-track projects-track--native">
+            {PROJECTS.map((project, i) => (
+              <ProjectCard key={i} project={project} index={i} disableTilt />
+            ))}
+          </div>
+        </div>
+      ) : (
+        /* Desktop: parallax atado al scroll */
+        <div className="projects-track-wrap">
+          <motion.div className="projects-track" style={{ x }}>
+            {PROJECTS.map((project, i) => (
+              <ProjectCard key={i} project={project} index={i} />
+            ))}
+          </motion.div>
+        </div>
+      )}
+
       <div className="projects-counter">
-        <motion.span style={{ x: xSlow }} className="projects-counter__num">0{PROJECTS.length}</motion.span>
-        <span className="projects-counter__label">proyectos</span>
+        <motion.span style={isMobile ? {} : { x: xSlow }} className="projects-counter__num">0{PROJECTS.length}</motion.span>
+        <span className="projects-counter__label">proyectos · deslizá →</span>
       </div>
     </div>
   );
 }
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, disableTilt = false }) {
   const ref = useRef(null);
   const isInView = useFramerInView(ref, { once: true, amount: 0.25 });
   const mx = useMotionValue(0), my = useMotionValue(0);
   const rotX = useSpring(useTransform(my, [-0.5, 0.5], [10, -10]), SPRING_3D);
   const rotY = useSpring(useTransform(mx, [-0.5, 0.5], [-10, 10]), SPRING_3D);
-  const onMouseMove = (e) => { const r = e.currentTarget.getBoundingClientRect(); mx.set((e.clientX - r.left) / r.width - 0.5); my.set((e.clientY - r.top) / r.height - 0.5); };
+  const onMouseMove = (e) => { if (disableTilt) return; const r = e.currentTarget.getBoundingClientRect(); mx.set((e.clientX - r.left) / r.width - 0.5); my.set((e.clientY - r.top) / r.height - 0.5); };
   const onMouseLeave = () => { mx.set(0); my.set(0); };
 
   return (
     <motion.div
       ref={ref}
       className="project-card"
-      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 700 }}
-      initial={{ opacity: 0, y: 60, rotateX: 25, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ z: 30 }}
+      style={disableTilt ? {} : { rotateX: rotX, rotateY: rotY, transformPerspective: 700 }}
+      initial={{ opacity: 0, y: 40, scale: 0.94 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >
@@ -369,18 +392,18 @@ function ProjectCard({ project, index }) {
         <motion.img
           src={project.img} alt={project.title}
           className="project-card__img"
-          whileHover={{ scale: 1.08 }}
+          whileHover={disableTilt ? {} : { scale: 1.08 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           loading="lazy"
         />
         <motion.div className="project-card__overlay" style={{ background: `${project.accent}18` }} initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} transition={{ duration: 0.3 }} />
-        <motion.div className="project-card__tag" initial={{ y: 8, opacity: 0 }} whileHover={{ y: 0, opacity: 1 }} transition={{ duration: 0.3 }}>{project.tag}</motion.div>
+        <div className="project-card__tag">{project.tag}</div>
       </div>
       <div className="project-card__body">
         <div className="project-card__num">0{index + 1}</div>
         <h3 className="project-card__title">{project.title}</h3>
         <p className="project-card__desc">{project.desc}</p>
-        <motion.div className="project-card__arrow" whileHover={{ x: 6 }} transition={{ duration: 0.2 }}>→</motion.div>
+        <div className="project-card__arrow">→</div>
       </div>
     </motion.div>
   );
